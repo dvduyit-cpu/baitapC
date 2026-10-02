@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài tập Switch Case - Lập trình C</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0066cc, #0099ff);
+            color: white;
+            padding: 28px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: auto;
+            min-height: calc(100vh - 120px);
+        }
+
+        .sidebar {
+            width: 270px;
+            background: white;
+            padding: 20px;
+            border-right: 1px solid #ddd;
+        }
+
+        .sidebar h3 {
+            color: #0066cc;
+            margin-bottom: 15px;
+        }
+
+        .sidebar button {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 8px;
+            border: none;
+            background: #eef5ff;
+            cursor: pointer;
+            text-align: left;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        .sidebar button:hover {
+            background: #0066cc;
+            color: white;
+        }
+
+        .content {
+            flex: 1;
+            padding: 30px;
+        }
+
+        .lesson {
+            display: none;
+            background: white;
+            padding: 25px;
+            border-radius: 14px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+        }
+
+        .lesson.active {
+            display: block;
+        }
+
+        .lesson h2 {
+            color: #0066cc;
+            margin-bottom: 15px;
+        }
+
+        .lesson h3 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .lesson p,
+        .lesson li {
+            line-height: 1.7;
+        }
+
+        .guide {
+            background: #eef8ff;
+            border-left: 5px solid #0066cc;
+            padding: 15px 18px;
+            margin-top: 15px;
+            border-radius: 8px;
+        }
+
+        .exercise {
+            background: #fff8e8;
+            border-left: 5px solid #ff9800;
+            padding: 15px 18px;
+            margin-top: 15px;
+            border-radius: 8px;
+        }
+
+        pre {
+            background: #1e1e1e;
+            color: #f8f8f2;
+            padding: 18px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin-top: 15px;
+            line-height: 1.5;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        .level {
+            display: inline-block;
+            padding: 5px 10px;
+            background: #e8f3ff;
+            color: #0066cc;
+            border-radius: 20px;
+            margin-bottom: 15px;
+        }
+
+        @media(max-width: 800px) {
+            .container {
+                display: block;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+
+            .content {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>BÀI TẬP SWITCH...CASE</h1>
+    <p>Lập trình C dành cho người mới bắt đầu</p>
+</header>
+
+<div class="container">
+
+    <aside class="sidebar">
+
+        <h3>Danh sách bài tập</h3>
+
+        <button onclick="showLesson(1)">Bài 1: Thứ trong tuần</button>
+        <button onclick="showLesson(2)">Bài 2: Máy tính đơn giản</button>
+        <button onclick="showLesson(3)">Bài 3: Xếp loại</button>
+        <button onclick="showLesson(4)">Bài 4: Số ngày trong tháng</button>
+        <button onclick="showLesson(5)">Bài 5: Kiểm tra nguyên âm</button>
+        <button onclick="showLesson(6)">Bài 6: Menu món ăn</button>
+        <button onclick="showLesson(7)">Bài 7: Đổi số thành chữ</button>
+        <button onclick="showLesson(8)">Bài 8: Xác định quý</button>
+        <button onclick="showLesson(9)">Bài 9: Menu hình học</button>
+        <button onclick="showLesson(10)">Bài 10: Menu lặp</button>
+
+    </aside>
+
+    <main class="content">
+
+        <section class="lesson active" id="lesson1">
+            <span class="level">Cơ bản</span>
+
+            <h2>Bài 1: Xác định thứ trong tuần</h2>
+
+            <div class="exercise">
+                <b>Yêu cầu:</b>
+                Nhập một số nguyên từ 1 đến 7.
+                Dùng switch...case để hiển thị thứ tương ứng.
+            </div>
+
+            <h3>Hướng dẫn</h3>
+
+            <div class="guide">
+                <ol>
+                    <li>Khai báo một biến kiểu int.</li>
+                    <li>Nhập giá trị bằng scanf().</li>
+                    <li>Dùng switch để kiểm tra giá trị.</li>
+                    <li>Tạo các case từ 1 đến 7.</li>
+                    <li>Sau mỗi case cần có break.</li>
+                    <li>Dùng default để xử lý dữ liệu không hợp lệ.</li>
+                </ol>
+            </div>
+
+            <h3>Khung chương trình</h3>
+
+<pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+
+    int thu;
+
+    printf("Nhap so tu 1 den 7: ");
+    scanf("%d", &thu);
+
+    switch(thu) {
+
+        case 1:
+            // Tu viet lenh
+            break;
+
+        case 2:
+            // Tu viet lenh
+            break;
+
+        // Bo sung cac case con lai
+
+        default:
+            // Xu ly khi nhap sai
+            break;
+    }
+
+    return 0;
+}</code></pre>
+
+        </section>
+
+
+        <section class="lesson" id="lesson2">
+
+            <span class="level">Cơ bản</span>
+
+            <h2>Bài 2: Máy tính đơn giản</h2>
+
+            <div class="exercise">
+                <b>Yêu cầu:</b>
+                Nhập hai số a, b và một phép tính +, -, *, /.
+                Dùng switch...case để xử lý phép tính.
+            </div>
+
+            <h3>Hướng dẫn</h3>
+
+            <div class="guide">
+                <ol>
+                    <li>Khai báo hai biến số thực a và b.</li>
+                    <li>Khai báo biến char để lưu phép tính.</li>
+                    <li>Nhập a, b và phép tính.</li>
+                    <li>Dùng switch với biến phép tính.</li>
+                    <li>Tạo các case '+', '-', '*', '/'.</li>
+                    <li>Riêng phép chia cần kiểm tra b có bằng 0 hay không.</li>
+                </ol>
+            </div>
+
+<pre><code>switch(phepTinh) {
+
+    case '+':
+        // Tu xu ly
+        break;
+
+    case '-':
+        // Tu xu ly
+        break;
+
+    case '*':
+        // Tu xu ly
+        break;
+
+    case '/':
+        // Kiem tra chia cho 0
+        break;
+
+    default:
+        // Phep tinh khong hop le
+}</code></pre>
+
+        </section>
+
+
+        <section class="lesson" id="lesson3">
+
+            <span class="level">Cơ bản</span>
+
+            <h2>Bài 3: Xếp loại học lực</h2>
+
+            <div class="exercise">
+                Nhập một ký tự A, B, C, D hoặc F và hiển thị mức xếp loại tương ứng.
+            </div>
+
+            <div class="guide">
+                <ol>
+                    <li>Khai báo biến kiểu char.</li>
+                    <li>Nhập ký tự bằng scanf(" %c", &bien).</li>
+                    <li>Dùng switch kiểm tra từng ký tự.</li>
+                    <li>Dùng default nếu nhập ký tự khác.</li>
+                </ol>
+            </div>
+
+        </section>
+
+
+        <section class="lesson" id="lesson4">
+
+            <span class="level">Trung bình</span>
+
+            <h2>Bài 4: Số ngày trong tháng</h2>
+
+            <div class="exercise">
+                Nhập tháng từ 1 đến 12 và xác định tháng đó có bao nhiêu ngày.
+            </div>
+
+            <div class="guide">
+                Có thể gom nhiều case có cùng kết quả:
+
+<pre><code>case 1:
+case 3:
+case 5:
+    // Cung mot cach xu ly
+    break;</code></pre>
+
+                Sinh viên tự xác định tháng nào có 31 ngày, 30 ngày và tháng 2.
+            </div>
+
+        </section>
+
+
+        <section class="lesson" id="lesson5">
+
+            <span class="level">Trung bình</span>
+
+            <h2>Bài 5: Kiểm tra nguyên âm</h2>
+
+            <div class="exercise">
+                Nhập một ký tự và kiểm tra ký tự đó có phải nguyên âm hay không.
+            </div>
+
+            <div class="guide">
+                Các nguyên âm gồm a, e, i, o, u.
+                Có thể gom nhiều case liên tiếp rồi xử lý chung.
+            </div>
+
+        </section>
+
+
+        <section class="lesson" id="lesson6">
+
+            <span class="level">Trung bình</span>
+
+            <h2>Bài 6: Menu món ăn</h2>
+
+            <div class="exercise">
+                1. Cơm gà<br>
+                2. Phở bò<br>
+                3. Bún bò<br>
+                4. Mì xào
+            </div>
+
+            <div class="guide">
+                Nhập lựa chọn từ 1 đến 4.
+                Dùng switch để xác định món ăn được chọn.
+                Mỗi case xử lý một món.
+            </div>
+
+        </section>
+
+
+        <section class="lesson" id="lesson7">
+
+            <span class="level">Cơ bản</span>
+
+            <h2>Bài 7: Đổi số thành chữ</h2>
+
+            <div class="exercise">
+                Nhập một số nguyên từ 0 đến 9 và hiển thị số đó bằng chữ.
+            </div>
+
+            <div class="guide">
+                Mỗi giá trị số tương ứng với một case.
+                Nếu nhập ngoài khoảng 0 đến 9 thì xử lý bằng default.
+            </div>
+
+        </section>
+
+
+        <section class="lesson" id="lesson8">
+
+            <span class="level">Trung bình</span>
+
+            <h2>Bài 8: Xác định quý</h2>
+
+            <div class="exercise">
+                Nhập tháng từ 1 đến 12 và xác định tháng thuộc quý nào.
+            </div>
+
+            <div class="guide">
+                Gợi ý: gom 3 tháng liên tiếp vào chung một nhóm case.
+                Ví dụ tháng 1, 2, 3 cùng một quý.
+            </div>
+
+        </section>
+
+
+        <section class="lesson" id="lesson9">
+
+            <span class="level">Nâng cao</span>
+
+            <h2>Bài 9: Menu hình học</h2>
+
+            <div class="exercise">
+                1. Diện tích hình vuông<br>
+                2. Diện tích hình chữ nhật<br>
+                3. Diện tích hình tròn<br>
+                4. Thoát
+            </div>
+
+            <div class="guide">
+                Mỗi lựa chọn cần nhập dữ liệu phù hợp.
+                Ví dụ hình vuông nhập cạnh, hình chữ nhật nhập chiều dài và chiều rộng.
+            </div>
+
+        </section>
+
+
+        <section class="lesson" id="lesson10">
+
+            <span class="level">Thực hành</span>
+
+            <h2>Bài 10: Menu lặp</h2>
+
+            <div class="exercise">
+                Viết chương trình có menu lựa chọn.
+                Sau khi thực hiện xong một chức năng, menu tiếp tục xuất hiện cho đến khi người dùng chọn 0 để thoát.
+            </div>
+
+            <div class="guide">
+                Bài này kết hợp:
+
+<pre><code>do {
+
+    // Hien thi menu
+    // Nhap lua chon
+
+    switch(luaChon) {
+
+        // Cac case
+
+    }
+
+} while(luaChon != 0);</code></pre>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script>
+
+function showLesson(number) {
+
+    const lessons = document.querySelectorAll(".lesson");
+
+    lessons.forEach(function(lesson) {
+        lesson.classList.remove("active");
+    });
+
+    document
+        .getElementById("lesson" + number)
+        .classList.add("active");
+}
+
+</script>
+
+</body>
+</html>
